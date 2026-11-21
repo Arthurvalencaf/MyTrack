@@ -22,3 +22,6 @@ create index on check_ins (user_id, checked_on);
 
 alter table habits enable row level security;
 alter table check_ins enable row level security;
+
+grant select, insert, update, delete on public.habits to service_role;
+grant select, insert, update, delete on public.check_ins to service_role;
