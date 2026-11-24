@@ -39,3 +39,15 @@ export async function update(userId, habitId, fields) {
   if (error) throw error;
   return data;
 }
+
+export async function findById(userId, habitId) {
+  const { data, error } = await supabase
+    .from('habits')
+    .select('*')
+    .eq('id', habitId)
+    .eq('user_id', userId)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data;
+}

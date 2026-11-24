@@ -5,6 +5,7 @@ import { supabase } from './config/supabase.js';
 import { requireAuth } from './middlewares/auth.js';
 import habitsRoutes from './modules/habits/habits.routes.js';
 import { AppError } from './shared/errors.js';
+import checkinsRoutes from './modules/checkins/checkins.routes.js';
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.get('/me', requireAuth, (req, res) => {
 });
 
 app.use('/habits', habitsRoutes);
+app.use('/checkins', checkinsRoutes);
 
 // 404 para rotas que não existem
 app.use((req, res) => {

@@ -83,3 +83,12 @@ export function updateHabit(userId, habitId, input = {}) {
 export function archiveHabit(userId, habitId) {
   return updateOrFail(userId, habitId, { archived: true });
 }
+
+export async function getHabit(userId, habitId) {
+  validateId(habitId);
+  const habit = await habitsRepository.findById(userId, habitId);
+  if (!habit) {
+    throw new AppError('Hábito não encontrado', 404);
+  }
+  return habit;
+}
